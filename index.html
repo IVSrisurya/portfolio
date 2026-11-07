@@ -1,676 +1,275 @@
-<!DOCTYPE HTML>
-<html>
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Srisurya</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="" />
-	<meta name="keywords" content="" />
-	<meta name="author" content="" />
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Srisurya Ippatapu Venkata</title>
+<meta name="description" content="Srisurya Ippatapu Venkata: software engineer at Microsoft and machine learning researcher working on the energy and carbon cost of AI.">
+<meta property="og:title" content="Srisurya Ippatapu Venkata">
+<meta property="og:description" content="Srisurya Ippatapu Venkata: software engineer at Microsoft and machine learning researcher working on the energy and carbon cost of AI.">
+<meta property="og:image" content="images/srisurya.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Literata:opsz,wght@7..72,400;7..72,600&display=swap">
+</head>
+<body>
+<style>
+/* Layout: a lab-notebook page — narrow left rail of section names, one reading column; the hero carries the carbon-accounting chain set as type. */
+:root{
+  --paper:#F2F4F3; --sheet:#FBFCFB; --ink:#16222B; --muted:#56656E; --rule:#D4DBD8;
+  --watt:#A35C00; --leaf:#2E6B57;
+  --display:"Familjen Grotesk","Helvetica Neue",Arial,sans-serif;
+  --body:"Literata",Georgia,"Times New Roman",serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#111A20; --sheet:#16222A; --ink:#E4EAEC; --muted:#93A3AB; --rule:#2A3942;
+  --watt:#F0A63A; --leaf:#6FC2A3; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#111A20; --sheet:#16222A; --ink:#E4EAEC; --muted:#93A3AB; --rule:#2A3942;
+  --watt:#F0A63A; --leaf:#6FC2A3; color-scheme:dark}
 
-  <!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.65;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:inherit;text-decoration-color:var(--watt);text-underline-offset:3px;text-decoration-thickness:1.5px}
+a:hover{color:var(--watt)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--watt);outline-offset:3px;border-radius:2px}
+h1,h2,h3{font-family:var(--display);font-weight:600;line-height:1.15;text-wrap:balance;margin:0}
+.wrap{max-width:1040px;margin:0 auto}
 
-	<!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-	<link rel="shortcut icon" href="favicon.ico">
+/* Hero */
+.hero{display:grid;grid-template-columns:1fr auto;gap:40px;align-items:end;padding-block:72px 48px;border-bottom:1px solid var(--rule)}
+.hero h1{font-size:clamp(2.4rem,6vw,4.25rem);letter-spacing:-.02em;font-weight:700}
+.role{font-family:var(--display);font-size:1.15rem;color:var(--muted);margin:14px 0 0}
+.portrait{width:168px;height:168px;border-radius:50%;object-fit:cover;max-width:100%;border:3px solid var(--sheet);box-shadow:0 0 0 1px var(--rule)}
+.links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-family:var(--display);font-size:1rem}
 
-	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700" rel="stylesheet">
-	
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="css/animate.css">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="css/icomoon.css">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="css/bootstrap.css">
-	<!-- Flexslider  -->
-	<link rel="stylesheet" href="css/flexslider.css">
-	<!-- Flaticons  -->
-	<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-	<!-- Owl Carousel -->
-	<link rel="stylesheet" href="css/owl.carousel.min.css">
-	<link rel="stylesheet" href="css/owl.theme.default.min.css">
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="css/style.css">
+/* The chain: tokens → joules → grams CO2e */
+.chain{padding-block:44px;border-bottom:1px solid var(--rule)}
+.chain-q{font-family:var(--display);font-size:clamp(1.35rem,3.2vw,2rem);font-weight:500;max-width:30ch;margin:0 0 28px}
+.eq{display:flex;flex-wrap:wrap;align-items:baseline;gap:10px 18px;font-family:var(--display);font-variant-numeric:tabular-nums}
+.term{display:flex;flex-direction:column}
+.term b{font-size:clamp(1.6rem,4.5vw,2.75rem);font-weight:700;letter-spacing:-.01em}
+.term small{font-family:var(--body);font-size:.85rem;color:var(--muted)}
+.term.e b{color:var(--watt)} .term.c b{color:var(--leaf)}
+.op{font-size:clamp(1.4rem,3.5vw,2.2rem);color:var(--muted)}
+.chain p.note{color:var(--muted);max-width:62ch;margin:26px 0 0;font-size:.98rem}
+@media (prefers-reduced-motion:no-preference){
+  .eq > *{animation:settle .5s ease-out both}
+  .eq > *:nth-child(2){animation-delay:.15s}.eq > *:nth-child(3){animation-delay:.3s}
+  .eq > *:nth-child(4){animation-delay:.45s}.eq > *:nth-child(5){animation-delay:.6s}
+  .eq > *:nth-child(6){animation-delay:.75s}.eq > *:nth-child(7){animation-delay:.9s}
+  @keyframes settle{from{opacity:.15;transform:translateY(6px)}to{opacity:1;transform:none}}
+}
 
-	<!-- Modernizr JS -->
-	<script src="js/modernizr-2.6.2.min.js"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="js/respond.min.js"></script>
-	<![endif]-->
+/* Sections with left rail */
+.sec{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;padding-block:52px;border-bottom:1px solid var(--rule)}
+.sec > h2{font-size:1.05rem;color:var(--muted);font-weight:600;position:sticky;top:20px;align-self:start}
+.sec-body{min-width:0;max-width:68ch}
+.lede{margin:0 0 8px;font-size:1.08rem}
+.item{display:grid;gap:4px;padding-block:18px;border-top:1px solid var(--rule)}
+.item:first-child{border-top:0;padding-top:0}
+.item h3{font-size:1.15rem}
+.meta{font-family:var(--display);font-size:.95rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.item p,.item ul{margin:4px 0 0}
+.item ul{padding-left:1.1em}
+.item li{margin-top:4px}
+.status{display:inline-block;font-family:var(--display);font-size:.8rem;font-weight:600;color:var(--leaf);border:1px solid currentColor;border-radius:999px;padding:1px 10px;margin-left:8px;vertical-align:2px}
 
-	</head>
-	<body>
-	<div id="colorlib-page">
-		<div class="container-wrap">
-		<a href="#" class="js-colorlib-nav-toggle colorlib-nav-toggle" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"><i></i></a>
-		<aside id="colorlib-aside" role="complementary" class="border js-fullheight">
-			<div class="text-center">
-				<div class="author-img" style="background-image: url(images/about.jpg);"></div>
-				<h2 id="colorlib-logo"><a href="index.html">Ippatapu Venkata Srisurya</a></h2>
-				<p><a class="btn btn-primary btn-learn" href="https://drive.google.com/file/d/1Fefkhlh0rAQXtHOMeiSEsEKrhLmTJULH/view?usp=sharing">Resume <i class="icon-download4"></i></a></p>
-			</div>
-			<nav id="colorlib-main-menu" role="navigation" class="navbar">
-				<div id="navbar" class="collapse">
-					<ul>
-						<li><a href="#" data-nav-section="about">About</a></li>
-						<li><a href="#" data-nav-section="skills">Skills</a></li>
-						<li><a href="#" data-nav-section="education">Education</a></li>
-						<li><a href="#" data-nav-section="Reaserch">Reaserch</a></li>
-						<li><a href="#" data-nav-section="Projects">Projects</a></li>
-						<li><a href="#" data-nav-section="Certificates">Certificates</a></li>
-						<li><a href="#" data-nav-section="contact">Contact</a></li>
-					</ul>
-				</div>
-			</nav>
+.pubs{list-style:none;margin:0;padding:0;counter-reset:p}
+.pubs li{display:grid;grid-template-columns:2.2em minmax(0,1fr);padding-block:12px;border-top:1px solid var(--rule)}
+.pubs li:first-child{border-top:0;padding-top:0}
+.pubs li::before{counter-increment:p;content:"[" counter(p) "]";font-family:var(--display);color:var(--muted);font-variant-numeric:tabular-nums}
+.pubs .t{font-weight:600}
+.pubs .v{color:var(--muted);font-size:.95rem}
+.pubs .me{text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
 
-			<div class="colorlib-footer">
-				<ul>
-					<li><a href="https://github.com/IVSrisurya"><i class="icon-github"></i></a></li>
-					<li><a href="www.linkedin.com/in/ippatapu-venkata-srisurya"><i class="icon-linkedin2"></i></a></li>
-				</ul>
-			</div>
+.skills{display:grid;grid-template-columns:9.5em minmax(0,1fr);gap:10px 18px;margin:0}
+.skills dt{font-family:var(--display);font-weight:600}
+.skills dd{margin:0}
 
-		</aside>
+.contact-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:6px}
+.email{font-family:var(--display);font-size:1.25rem;font-weight:600;user-select:all;overflow-wrap:anywhere}
+button.copy{font-family:var(--display);font-size:.9rem;color:var(--ink);background:var(--sheet);border:1px solid var(--rule);border-radius:6px;padding:6px 12px;cursor:pointer}
+button.copy:hover{border-color:var(--watt)}
+footer{padding-block:28px 48px;color:var(--muted);font-size:.9rem;font-family:var(--display)}
 
-		<div id="colorlib-main">
-			<section class="colorlib-about" data-section="about">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-12">
-							<div class="row row-bottom-padded-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="col-md-12">
-									<div class="about-desc">
-										<h2 class="colorlib-heading">Who Am I?</h2>
-										<p><strong>Hi I'm Srisurya</strong> Student at Amrita Vishwa vidyapeetham, Chennai pursing bachelor of technology in the field of Artificial intelligence(2024). Interested in doing various team projects in various fields as Data analyst, Machine Learning, Deep Learning.Currently I am the techincal lead for the Artificial Intelligence club Neuronix at our campus. I am a self-motivated person who is always ready to learn new things and a team player and ready to face challenges in life. I am a person who is always ready to accept new things in life.</p>
-									</div>
-								</div>
-							</div>
-							<div class="row">
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInRight">
-									<div class="services color-2">
-										<span class="icon2"><i class="icon-globe-outline"></i></span>
-										<h3>Website Designing<br><div>
+@media (max-width:760px){
+  .hero{grid-template-columns:1fr;padding-block:40px 32px;gap:24px}
+  .portrait{order:-1;width:112px;height:112px}
+  .sec{grid-template-columns:1fr;gap:16px;padding-block:36px}
+  .sec > h2{position:static;font-size:1.25rem;color:var(--ink)}
+  .skills{grid-template-columns:1fr;gap:2px}
+  .skills dd{margin-bottom:10px}
+}
+</style>
 
-										</div></h3>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInTop">
-									<div class="services color-3">
-										<span class="icon2"><i class="icon-data"></i></span>
-										<h3>Software Developer</h3>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInBottom">
-									<div class="services color-4">
-										<span class="icon2"><i class="icon-phone3"></i></span>
-										<h3>Machine Learning</h3>
-									</div>
-								</div>
-								<div class="col-md-3 animate-box" data-animate-effect="fadeInBottom">
-									<div class="services color-4">
-										<span class="icon2"><i class="icon-phone3"></i></span>
-										<h3>Computational Biology</h3>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
-				</div>
-			</section>
+<div class="wrap">
+  <header class="hero">
+    <div>
+      <h1>Ippatapu Venkata Srisurya</h1>
+      <p class="role">Software engineer at Microsoft. M.Tech student in AI and machine learning at BITS Pilani. Researching the energy cost of AI.</p>
+      <nav class="links" aria-label="Profiles">
+        <a href="https://scholar.google.com/citations?user=1XteT-sAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>
+        <a href="https://github.com/IVSrisurya" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://www.linkedin.com/in/ippatapu-venkata-srisurya" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="#contact">Email</a>
+      </nav>
+    </div>
+    <img class="portrait" src="images/srisurya.jpg" alt="Portrait of Srisurya" width="168" height="168">
+  </header>
 
-			<section class="colorlib-skills" data-section="skills">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">My Specialty</span>
-							<h2 class="colorlib-heading animate-box">My Skills</h2>
-						</div>
-					</div>
-					<div class="row">
-						
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>Python</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-1" role="progressbar" aria-valuenow="80"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>Tensorflow and Pytorch</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-2" role="progressbar" aria-valuenow="70"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:70%">
-								    <span>70%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>HTML5, CSS, Javascript</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-3" role="progressbar" aria-valuenow="75"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:75%">
-								    <span>75%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>Big Data Technologies</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-3" role="progressbar" aria-valuenow="75"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:75%">
-								    <span>75%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>R programming</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-4" role="progressbar" aria-valuenow="60"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:60%">
-								    <span>60%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInLeft">
-							<div class="progress-wrap">
-								<h3>Matlab</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-5" role="progressbar" aria-valuenow="70"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:70%">
-								    <span>70%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>Django</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-6 animate-box" data-animate-effect="fadeInRight">
-							<div class="progress-wrap">
-								<h3>SQL</h3>
-								<div class="progress">
-								 	<div class="progress-bar color-6" role="progressbar" aria-valuenow="80"
-								  	aria-valuemin="0" aria-valuemax="100" style="width:80%">
-								    <span>80%</span>
-								  	</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  <section class="chain" aria-labelledby="q">
+    <h2 class="chain-q" id="q">When an AI agent uses fewer tokens, does it really use less energy?</h2>
+    <div class="eq" aria-label="Tokens, times energy per token, gives energy in kilowatt-hours; times grid carbon intensity, gives grams of CO2 equivalent">
+      <span class="term"><b>tokens</b><small>what we usually count</small></span>
+      <span class="op">×</span>
+      <span class="term e"><b>J / token</b><small>measured on the hardware</small></span>
+      <span class="op">→</span>
+      <span class="term e"><b>kWh</b><small>energy drawn</small></span>
+      <span class="op">×</span>
+      <span class="term c"><b>gCO₂e / kWh</b><small>grid carbon intensity</small></span>
+    </div>
+    <p class="note">Cost and token savings are easy to report. Energy and carbon are not, because joules per token change with model, batch, context length and hardware. My current paper measures whether context-management strategies in agent and RAG workflows save energy and CO₂ in proportion to the tokens they save.</p>
+  </section>
 
-			<section class="colorlib-education" data-section="education">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Education</span>
-							<h2 class="colorlib-heading animate-box">Education</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12 animate-box" data-animate-effect="fadeInLeft">
-							<div class="fancy-collapse-panel">
-								<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-					
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingTwo">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">Bachelor Degree in Artificial intelligence
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-									        <div class="panel-body">
-									            <p>Pursuing my undergraduate study at Amrita School of Computing, Chennai campus</p>
-													<ul>
-														<li>SGPA for Semester 1 : 8.68</li>
-														<li>SGPA for Semester 2 : 9.10</li>
-														<li>SGPA for Semester 3 : 9.25</li>
-														<li>SGPA for Semester 4 : 9.31</li>
-														<li>SGPA for Semester 5 : 9.48</li>
-														<li>CGPA : 9.17</li>
-													</ul>
-									        </div>
-									    </div>
-									</div>
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingThree">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">Higher Secondary Education
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-									        <div class="panel-body">
-									            <p>Completed my higher secondary education from Narayana Junior College, Vijayawada with 934 marks out of 1000</p>
-									        </div>
-									    </div>
-									</div>
+  <section class="sec" id="research">
+    <h2>Research</h2>
+    <div class="sec-body">
+      <p class="lede">I work on Green AI, measuring the energy and carbon footprint of AI workloads. Related interests are language models for analysing corporate climate disclosures, and machine learning for downscaling climate models.</p>
+      <div class="item">
+        <h3>Do token savings mean energy savings? <span class="status">In progress</span></h3>
+        <p class="meta">Energy and CO₂ accounting for LLM-agent context management</p>
+        <p>Instrumented energy measurement of local agent and RAG workflows on consumer hardware, converted to CO₂ estimates.</p>
+      </div>
+      <div class="item">
+        <h3>Next</h3>
+        <ul>
+          <li>LLMs for reading emissions disclosures and spotting greenwashing.</li>
+          <li>Deep-learning downscaling of climate models, as my M.Tech thesis.</li>
+        </ul>
+      </div>
+      <p class="meta" style="margin-top:14px">Open to collaborating with research groups on sustainable AI. Research done in a personal capacity.</p>
+    </div>
+  </section>
 
-									<div class="panel panel-default">
-									    <div class="panel-heading" role="tab" id="headingFour">
-									        <h4 class="panel-title">
-									            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">School
-									            </a>
-									        </h4>
-									    </div>
-									    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
-									        <div class="panel-body">
-									            <p>Completed my schoolling from Dr.K.K.R Gowtham High School, Vijayawada with a CGPA of 9.8 </p>	
-									        </div>
-									    </div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
+  <section class="sec" id="experience">
+    <h2>Experience</h2>
+    <div class="sec-body">
+      <div class="item">
+        <h3>Software Engineer, Microsoft</h3>
+        <p class="meta">Aug 2024 to present, Hyderabad</p>
+        <p>Backend APIs and services for the Exchange Admin Center, the portal administrators use to manage Exchange Online, and for Exchange Server.</p>
+      </div>
+      <div class="item">
+        <h3>.NET Developer Intern, SecureU</h3>
+        <p class="meta">Nov 2023 to May 2024, remote</p>
+        <p>Built a C#/.NET Windows tool that detects and controls anomalous activity across an organisation's machines, managed from a single admin portal.</p>
+      </div>
+      <div class="item">
+        <h3>Software Engineering Intern, Microsoft</h3>
+        <p class="meta">Jun 2023 to Aug 2023, Hyderabad</p>
+        <p>Redesigned navigation in the Exchange Admin Center, built portal performance monitoring, streamlined data pipelines with Azure Data Factory and Azure Data Explorer, and hardened authentication.</p>
+      </div>
+    </div>
+  </section>
 
-			<section class="colorlib-experience" data-section="Reaserch">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Reaserch Activities</span>
-							<h2 class="colorlib-heading animate-box">Reaserch</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-				         <div class="timeline-centered">
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
+  <section class="sec" id="publications">
+    <h2>Publications</h2>
+    <div class="sec-body">
+      <ol class="pubs">
+        <li><div><span class="t">Neural machine translation using an Adam-optimised generative adversarial network.</span> <span class="me">I. V. Srisurya</span>, R. Prasanna Kumar. <span class="v">ICCMC 2023, 7th International Conference on Computing Methodologies and Communication.</span></div></li>
+        <li><div><span class="t">Transcriptional regulator network for predicting driver variants and mutations in lung cancer.</span> C. Spandana, <span class="me">I. V. Srisurya</span>, R. Prasanna Kumar, G. Bharathi Mohan. <span class="v">ICCMC 2023.</span></div></li>
+        <li><div><span class="t">Underwater image enhancement and restoration using CycleGAN.</span> With S. Chereddy, Priyadharshini, Krithika, S. Aasha Nandhini, P. K. Rangarajan, B. M. Gurusamy, S. Parthasarathy. <span class="v">ICICC 2023, 6th International Conference on Innovative Computing and Communication.</span></div></li>
+        <li><div><span class="t">An efficient genetic-algorithm-based AutoML approach for classification and regression.</span> With S. Chereddy, S. Aasha Nandhini, P. K. Rangarajan, B. M. Gurusamy, S. Parthasarathy. <span class="v">IDCIoT 2023, International Conference on Intelligent Data Communication Technologies and Internet of Things.</span></div></li>
+        <li><div><span class="t">Metabolic pathway class prediction using graph convolutional networks.</span> With I. R. Oviya, K. Mukesh. <span class="v">ICCIS 2022, 4th International Conference on Communication and Intelligent Systems.</span></div></li>
+        <li><div><span class="t"><a href="https://link.springer.com/chapter/10.1007/978-981-19-2821-5_64" target="_blank" rel="noopener">A VAE-GAN-based model for ligand design.</a></span> With I. R. Oviya, K. Mukesh, C. Spandana, E. Anbazhagan. <span class="v">ICICC 2022, Springer.</span></div></li>
+      </ol>
+      <p class="meta" style="margin-top:14px">Full list with citations on <a href="https://scholar.google.com/citations?user=1XteT-sAAAAJ&amp;hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+    </div>
+  </section>
 
-					               <div class="timeline-icon color-1">
-					                  <i class="icon-pen2"></i>
-					               </div>
+  <section class="sec" id="projects">
+    <h2>Projects</h2>
+    <div class="sec-body">
+      <div class="item">
+        <h3><a href="https://github.com/IVSrisurya/VNF_ACN" target="_blank" rel="noopener">Resource estimation for network function virtualisation</a></h3>
+        <p>Compared fixed, statistical and machine-learning models for predicting the resources virtual network functions need, across several environments.</p>
+      </div>
+      <div class="item">
+        <h3>Viral sequence classification</h3>
+        <p>A CNN and LSTM model that classifies viral sequences from metagenomic data.</p>
+      </div>
+      <div class="item">
+        <h3>Preterm birth prediction</h3>
+        <p>Compared machine-learning classifiers for predicting preterm birth in Asian and American cohorts.</p>
+      </div>
+      <div class="item">
+        <h3>Face reconstruction with CycleGAN</h3>
+        <p>Trained a CycleGAN to reconstruct faces and served it through a Flask web app.</p>
+      </div>
+      <div class="item">
+        <h3>Yoga pose correction in the browser</h3>
+        <p>Real-time pose feedback using PoseNet in TensorFlow.js.</p>
+      </div>
+    </div>
+  </section>
 
-					               <div class="timeline-label">
-					                  <h2>
-										<a href="https://link.springer.com/chapter/10.1007/978-981-19-2821-5_64" style="color: black;">
-										  A Variational Autoencoder – General Adversarial Networks (VAE-GAN) based model for ligand designing</a></h2>
-					                  <p><b>Co-authors: </b> Dr I.R Oviya, Mukesh K, Chereddy
-										Spandana, Anbazhagan E</p>
-										<p><b>Conference</b> Fifth version of International Conference in
-											innovative Computing and Communication
-											(ICICC-2022)</p>
-					               </div>
-					            </div>
-					         </article>
-							 </div>
-							 </div>
-							 </div>
+  <section class="sec" id="education">
+    <h2>Education</h2>
+    <div class="sec-body">
+      <div class="item">
+        <h3>M.Tech, Artificial Intelligence and Machine Learning</h3>
+        <p class="meta">BITS Pilani, Work Integrated Learning Programme. In progress.</p>
+      </div>
+      <div class="item">
+        <h3>B.Tech, Computer Science and Engineering (Artificial Intelligence)</h3>
+        <p class="meta">Amrita School of Engineering, 2020 to 2024. CGPA 9.17 / 10.</p>
+      </div>
+      <div class="item">
+        <h3>Certifications</h3>
+        <p>Microsoft Certified: Azure Data Scientist Associate. Amazon ML Summer School.</p>
+      </div>
+    </div>
+  </section>
 
-							 <div class="row">
-								<div class="col-md-12">
-								 <div class="timeline-centered">
-									 <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-										<div class="timeline-entry-inner">
-		
-										   <div class="timeline-icon color-1">
-											  <i class="icon-pen2"></i>
-										   </div>
-		
-										   <div class="timeline-label">
-											  <h2>
-												<a href="" style="color: black;">
-													Metabolic Pathway Class Prediction using Graph Convolutional Network (GCN)</a></h2>
-													<p><b>Co-authors: </b> Dr I.R Oviya, Mukesh K </p>
-														<p><b>Conference</b> 4th International Conference on Communication
-															and Intelligent Systems (ICCIS 2022)</p>
-										   </div>
-										</div>
-									 </article>
-									 </div>
-									 </div>
-									 </div>
+  <section class="sec" id="skills">
+    <h2>Skills</h2>
+    <div class="sec-body">
+      <dl class="skills">
+        <dt>Languages</dt><dd>Python, C#, SQL, JavaScript, R, MATLAB</dd>
+        <dt>Machine learning</dt><dd>PyTorch, TensorFlow, Transformers, RAG, mixture of experts, state-space models (Mamba, LinOSS), GANs, VAEs, graph neural networks</dd>
+        <dt>LLM tooling</dt><dd>Ollama for local models, Vertex AI</dd>
+        <dt>Backend and data</dt><dd>.NET, FastAPI, Django, Flask, Streamlit, MySQL, MongoDB</dd>
+        <dt>Cloud</dt><dd>Azure Data Factory, Azure Data Explorer, GCP Vertex AI and Pub/Sub</dd>
+      </dl>
+    </div>
+  </section>
 
-									 <div class="row">
-										<div class="col-md-12">
-										 <div class="timeline-centered">
-											 <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-												<div class="timeline-entry-inner">
-				
-												   <div class="timeline-icon color-1">
-													  <i class="icon-pen2"></i>
-												   </div>
-				
-												   <div class="timeline-label">
-													  <h2>
-														<a href="" style="color: black;">
-															An Efficient Genetic Algorithm Based AutoML Approach for Classification and Regression</a></h2>
-															<p><b>Co-authors: </b> Spandana Chereddy , Dr.Aasha Nandhini S, Dr. Prasanna
-																Kumar Rangarajan, Bharathi mohan Gurusamy, Parthasarathy S</p>
-																<p><b>Conference</b> International Conference on Intelligent Data Communication
-																	Technologies and Internet of Things (IDCIoT 2023)</p>
-												   </div>
-												</div>
-											 </article>
-											 </div>
-											 </div>
-											 </div>
+  <section class="sec" id="contact">
+    <h2>Contact</h2>
+    <div class="sec-body">
+      <p class="lede">I'm happy to hear from researchers working on sustainable AI, and from teams building AI systems.</p>
+      <div class="contact-row">
+        <span class="email" id="email">ippatapuvenkatasrisurya@gmail.com</span>
+        <button class="copy" id="copy" type="button">Copy email</button>
+      </div>
+    </div>
+  </section>
 
-											 <div class="row">
-												<div class="col-md-12">
-												 <div class="timeline-centered">
-													 <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-														<div class="timeline-entry-inner">
-						
-														   <div class="timeline-icon color-1">
-															  <i class="icon-pen2"></i>
-														   </div>
-						
-														   <div class="timeline-label">
-															  <h2>
-																<a href="" style="color: black;">
-																	Underwater Image Enhancement and Restoration Using Cycle GAN</a></h2>
-																	<p><b>Co-authors: </b> Spandana Chereddy , Priyadharshini, Krithika,
-																		Dr.Aasha Nandhini S, Dr. Prasanna Kumar Rangarajan, Bharathi</p>
-																		<p><b>Conference</b> 6th International conference on innovative computing and
-																			communication (ICICC 2023)</p>
-														   </div>
-														</div>
-													 </article>
-													 </div>
-													 </div>
-													 </div>
+  <footer>Hyderabad, India</footer>
+</div>
 
-													 <div class="row">
-														<div class="col-md-12">
-														 <div class="timeline-centered">
-															 <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-																<div class="timeline-entry-inner">
-								
-																   <div class="timeline-icon color-1">
-																	  <i class="icon-pen2"></i>
-																   </div>
-								
-																   <div class="timeline-label">
-																	  <h2>
-																		<a href="" style="color: black;">
-																			Neural Machine Translation Using Adam Optimised Generative Adversarial Network</a></h2>
-																			<p><b>Co-authors: </b> Ippatapu Venkata Srisurya, Dr. R
-																				Prasanna Kumar</p>
-																				<p><b>Conference</b> 7th International Conference on Computing
-																					Methodologies and Communication (ICCMC 2023)</p>
-																   </div>
-																</div>
-															 </article>
-															 </div>
-															 </div>
-															 </div>
-							</section>
+<script>
+(function(){
+  var b=document.getElementById('copy'), e=document.getElementById('email');
+  b.addEventListener('click',function(){
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy email'},1600)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(e);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected, press Ctrl+C'};
+    try{navigator.clipboard.writeText(e.textContent.trim()).then(done,fallback)}catch(x){fallback()}
+  });
+})();
+</script>
 
-
-			<section class="colorlib-experience" data-section="Projects">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Projects</span>
-							<h2 class="colorlib-heading animate-box">My Projects</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-				         <div class="timeline-centered">
-					    
-
-
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="https://github.com/IVSrisurya/VNF_ACN" style="color: black;">Virtual Network Function in Network function virtualisation using different Ml Models</a><span><p>Nov 2022 - Jan 2023</p></span></h2>
-					                  <p>VNF are important part of cloud structures and it is important to allocate the resource the dynamically. Different ML models were used for different scenarios and experiments.</p>
-					               </div>
-					            </div>
-					         </article>
-
-							 <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-5">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="https://github.com/IVSrisurya/Microsoft-engage" style="color: black;">Smart attendance system based Django framework and
-										dbsqlite3</a><span><p>Apr 2022 - May 2022</p></span></h2>
-					                  <!-- <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p> -->
-					               </div>
-					            </div>
-					         </article>
-
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInLeft">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-3">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="https://github.com/IVSrisurya/Personality-Prediction" style="color: black;">Personality Prediction webapp using various machine learning algorithms</a> <span><p>Apr 2021 - May 2021</p></span></h2>
-					                  <p>Machine Learning models have been actively using such a wide range of data to predict individuals' Big Five (OCEAN) personality traits.</p>
-					               </div>
-					            </div>
-					         </article>
-
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInTop">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-4">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="https://github.com/IVSrisurya/AutoCompleteFeature" style="color: black;">Auto Complete feature (GUI) using Trie data structure in java</a><span><p>Dec 2020 - Feb 2021</p></span></h2>
-					                  <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
-					               </div>
-					            </div>
-					         </article>
-
-					         
-
-					         <article class="timeline-entry begin animate-box" data-animate-effect="fadeInBottom">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-none">
-					               </div>
-					            </div>
-					         </article>
-					      </div>
-					   </div>
-				   </div>
-				</div>
-			</section>
-
-
-			<section class="colorlib-experience" data-section="Certificates">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Certificates</span>
-							<h2 class="colorlib-heading animate-box">My Certificates</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-12">
-				         <div class="timeline-centered">
-					    
-
-
-					         <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="" style="color: black;">Azure Data Scientists Associate - Microsoft</a><span></span></h2>
-					                  <!-- <p>VNF are important part of cloud structures and it is important to allocate the resource the dynamically. Different ML models were used for different scenarios and experiments.</p> -->
-					               </div>
-					            </div>
-					         </article>
-
-							 <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="" style="color: black;">Amazon Ml Summer School</a><span></span></h2>
-					                  <!-- <p>VNF are important part of cloud structures and it is important to allocate the resource the dynamically. Different ML models were used for different scenarios and experiments.</p> -->
-					               </div>
-					            </div>
-					         </article>
-
-							 <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="" style="color: black;">Machine Learning by Andrew Ng - Stanford University</a><span></span></h2>
-					                  <!-- <p>VNF are important part of cloud structures and it is important to allocate the resource the dynamically. Different ML models were used for different scenarios and experiments.</p> -->
-					               </div>
-					            </div>
-					         </article>
-
-							 <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="" style="color: black;">Google Data Analytics</a><span></span></h2>
-					                  <!-- <p>VNF are important part of cloud structures and it is important to allocate the resource the dynamically. Different ML models were used for different scenarios and experiments.</p> -->
-					               </div>
-					            </div>
-					         </article>
-
-							 <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="" style="color: black;">Python For Data Science - IBM</a><span></span></h2>
-					                  <!-- <p>VNF are important part of cloud structures and it is important to allocate the resource the dynamically. Different ML models were used for different scenarios and experiments.</p> -->
-					               </div>
-					            </div>
-					         </article>
-
-							 <article class="timeline-entry animate-box" data-animate-effect="fadeInRight">
-					            <div class="timeline-entry-inner">
-					               <div class="timeline-icon color-2">
-					                  <i class="icon-pen2"></i>
-					               </div>
-					               <div class="timeline-label">
-					               	<h2><a href="" style="color: black;">IBM Data Science - IBM</a><span></span></h2>
-					                  <!-- <p>VNF are important part of cloud structures and it is important to allocate the resource the dynamically. Different ML models were used for different scenarios and experiments.</p> -->
-					               </div>
-					            </div>
-					         </article>
-					         
-					      </div>
-					   </div>
-				   </div>
-				</div>
-			</section>
-
-
-			<section class="colorlib-contact" data-section="contact">
-				<div class="colorlib-narrow-content">
-					<div class="row">
-						<div class="col-md-6 col-md-offset-3 col-md-pull-3 animate-box" data-animate-effect="fadeInLeft">
-							<span class="heading-meta">Get in Touch</span>
-							<h2 class="colorlib-heading">Contact</h2>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-5">
-							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="colorlib-icon">
-									<i class="icon-globe-outline"></i>
-								</div>
-								<div class="colorlib-text">
-									<p><a href="#">ippatapuvenkatasrisurya@gmail.com</a></p>
-								</div>
-							</div>
-
-							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="colorlib-icon">
-									<i class="icon-map"></i>
-								</div>
-								<div class="colorlib-text">
-									<p>Vijayawada, Andhra Pradesh, India</p>
-								</div>
-							</div>
-
-							<div class="colorlib-feature colorlib-feature-sm animate-box" data-animate-effect="fadeInLeft">
-								<div class="colorlib-icon">
-									<i class="icon-phone"></i>
-								</div>
-								<div class="colorlib-text">
-									<p><a href="tel://">+91 6300646327</a></p>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-				</div>
-			</section>
-
-		</div><!-- end:colorlib-main -->
-	</div><!-- end:container-wrap -->
-	</div><!-- end:colorlib-page -->
-
-	<!-- jQuery -->
-	<script src="js/jquery.min.js"></script>
-	<!-- jQuery Easing -->
-	<script src="js/jquery.easing.1.3.js"></script>
-	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>
-	<!-- Waypoints -->
-	<script src="js/jquery.waypoints.min.js"></script>
-	<!-- Flexslider -->
-	<script src="js/jquery.flexslider-min.js"></script>
-	<!-- Owl carousel -->
-	<script src="js/owl.carousel.min.js"></script>
-	<!-- Counters -->
-	<script src="js/jquery.countTo.js"></script>
-	
-	
-	<!-- MAIN JS -->
-	<script src="js/main.js"></script>
-
-	</body>
+</body>
 </html>
-
